@@ -5,30 +5,14 @@ import { motion } from "framer-motion";
 const certifications = [
   {
     id: "01",
-    title: "Belajar Pengujian Aplikasi Web dengan Selenium",
-    issuer: "Dicoding Indonesia",
+    title: "Manual Quality Assurance (Software Tester)",
+    issuer: "GROWIA — PT Growia Online Edukasi",
     year: "2024",
-    category: "Automation",
-    color: "from-blue-500/10 to-transparent",
+    category: "QA / Testing",
+    color: "from-red-500/10 to-transparent",
   },
   {
     id: "02",
-    title: "Belajar Dasar-Dasar DevOps",
-    issuer: "Dicoding Indonesia",
-    year: "2024",
-    category: "DevOps",
-    color: "from-purple-500/10 to-transparent",
-  },
-  {
-    id: "03",
-    title: "Belajar Membuat Aplikasi Back-End untuk Pemula",
-    issuer: "Dicoding Indonesia",
-    year: "2024",
-    category: "Backend",
-    color: "from-green-500/10 to-transparent",
-  },
-  {
-    id: "04",
     title: "AI-Assisted Testing & Automation",
     issuer: "Hackativ8",
     year: "2025",
@@ -40,9 +24,9 @@ const certifications = [
 const education = [
   {
     degree: "S1 Teknik Informatika",
-    institution: "Universitas / Institut",
-    period: "2019 — 2023",
-    description: "Fokus pada rekayasa perangkat lunak dan pengujian sistem.",
+    institution: "Indraprasta PGRI University",
+    period: "2021 — 2025",
+    description: "Specialized in modern software engineering, AI-driven development tools, and intelligent quality assurance methodologies.",
   },
 ];
 
@@ -193,7 +177,7 @@ export default function Certifications() {
                   Quick Stats
                 </p>
                 {[
-                  { label: "Certs Earned", value: "4+" },
+                  { label: "Certs Earned", value: "2+" },
                   { label: "Tools Mastered", value: "10+" },
                   { label: "Test Cases Written", value: "1000+" },
                   { label: "Bugs Found", value: "500+" },
