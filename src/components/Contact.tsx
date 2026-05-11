@@ -38,15 +38,35 @@ const contactLinks = [
 ];
 
 export default function Contact() {
-  const [formStatus, setFormStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [formStatus, setFormStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormStatus("sending");
-    setTimeout(() => {
-      setFormStatus("sent");
-      showToast("Message sent successfully! I'll get back to you soon.", "success");
-    }, 1500);
+
+    const formData = new FormData(e.currentTarget);
+    formData.append("access_key", "2a66daad-3da8-4d9b-a4cd-aeaafd797b61");
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setFormStatus("sent");
+        showToast("Message sent successfully! I'll get back to you soon.", "success");
+        (e.target as HTMLFormElement).reset();
+      } else {
+        throw new Error("Failed");
+      }
+    } catch {
+      setFormStatus("error");
+      showToast("Failed to send message. Please try email directly.", "error");
+    }
+
     setTimeout(() => setFormStatus("idle"), 4000);
   };
 
@@ -149,6 +169,7 @@ export default function Contact() {
                 </label>
                 <input
                   type="text"
+                  name="name"
                   required
                   className="w-full bg-transparent border-b border-white/10 py-3 text-sm text-white font-light focus:outline-none focus:border-lambo-gold transition-colors placeholder:text-white/15"
                   placeholder="Your name"
@@ -160,6 +181,7 @@ export default function Contact() {
                 </label>
                 <input
                   type="email"
+                  name="email"
                   required
                   className="w-full bg-transparent border-b border-white/10 py-3 text-sm text-white font-light focus:outline-none focus:border-lambo-gold transition-colors placeholder:text-white/15"
                   placeholder="your@email.com"
@@ -171,6 +193,7 @@ export default function Contact() {
                 </label>
                 <input
                   type="text"
+                  name="subject"
                   required
                   className="w-full bg-transparent border-b border-white/10 py-3 text-sm text-white font-light focus:outline-none focus:border-lambo-gold transition-colors placeholder:text-white/15"
                   placeholder="Project inquiry"
@@ -181,6 +204,7 @@ export default function Contact() {
                   Message
                 </label>
                 <textarea
+                  name="message"
                   required
                   rows={4}
                   className="w-full bg-transparent border-b border-white/10 py-3 text-sm text-white font-light focus:outline-none focus:border-lambo-gold transition-colors resize-none placeholder:text-white/15"
@@ -212,6 +236,11 @@ export default function Contact() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     Message Sent!
+                  </span>
+                )}
+                {formStatus === "error" && (
+                  <span className="flex items-center gap-2 text-red-600">
+                    ✕ Failed — Try Again
                   </span>
                 )}
               </button>
