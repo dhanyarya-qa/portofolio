@@ -11,8 +11,8 @@ import ImpactMetrics from "@/components/ImpactMetrics";
 import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
 import WhyHireMe from "@/components/WhyHireMe";
+import BugWarStories from "@/components/BugWarStories";
 import Projects from "@/components/Projects";
-import Testimonials from "@/components/Testimonials";
 import Certifications from "@/components/Certifications";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -39,8 +39,8 @@ export default function Home() {
       <TechMarquee />
       <Experience />
       <WhyHireMe />
+      <BugWarStories />
       <Projects />
-      <Testimonials />
       <Certifications />
       <Contact />
       <Footer />

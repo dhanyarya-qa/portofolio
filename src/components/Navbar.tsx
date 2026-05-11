@@ -2,15 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { navigation } from "@/data/navigation";
 
-const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Certs", href: "#certifications" },
-  { label: "Contact", href: "#contact" },
-];
+const navLinks = navigation.map((n) => ({ label: n.label, href: n.href }));
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -98,21 +92,9 @@ export default function Navbar() {
             className="md:hidden flex flex-col gap-1.5 w-7 group"
             aria-label="Toggle menu"
           >
-            <span
-              className={`block h-px bg-white transition-all duration-300 ${
-                mobileOpen ? "rotate-45 translate-y-[3.5px] w-7" : "w-7"
-              }`}
-            />
-            <span
-              className={`block h-px bg-white transition-all duration-300 ${
-                mobileOpen ? "opacity-0 w-0" : "w-5"
-              }`}
-            />
-            <span
-              className={`block h-px bg-white transition-all duration-300 ${
-                mobileOpen ? "-rotate-45 -translate-y-[3.5px] w-7" : "w-3"
-              }`}
-            />
+            <span className={`block h-px bg-white transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-[3.5px] w-7" : "w-7"}`} />
+            <span className={`block h-px bg-white transition-all duration-300 ${mobileOpen ? "opacity-0 w-0" : "w-5"}`} />
+            <span className={`block h-px bg-white transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-[3.5px] w-7" : "w-3"}`} />
           </button>
         </div>
       </motion.nav>

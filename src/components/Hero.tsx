@@ -3,13 +3,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import AnimatedCounter from "./AnimatedCounter";
-
-const roles = [
-  "QA Engineer",
-  "Automation Specialist",
-  "Performance Tester",
-  "Manual Testing Expert",
-];
+import { roles } from "@/data/roles";
+import { heroMetrics } from "@/data/metrics";
 
 // Particle system
 function Particles() {
@@ -94,13 +89,6 @@ export default function Hero() {
 
     return () => clearTimeout(timeout);
   }, [charIndex, isDeleting, roleIndex]);
-
-  const stats = [
-    { value: 777, suffix: "+", label: "JIRA Tickets" },
-    { value: 2, suffix: "+", label: "Years Experience" },
-    { value: 3, suffix: "+", label: "Companies" },
-    { value: 10, suffix: "+", label: "Tools Mastered" },
-  ];
 
   return (
     <section
@@ -231,7 +219,7 @@ export default function Hero() {
           transition={{ delay: 1.3 }}
           className="mt-16 md:mt-20 flex flex-wrap gap-8 md:gap-16"
         >
-          {stats.map((stat) => (
+          {heroMetrics.map((stat) => (
             <div key={stat.label} className="group">
               <p className="text-2xl md:text-3xl font-bold text-white group-hover:text-lambo-gold transition-colors duration-300">
                 <AnimatedCounter target={stat.value} suffix={stat.suffix} duration={2000} />

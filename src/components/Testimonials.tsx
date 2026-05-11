@@ -1,3 +1,4 @@
+// DEPRECATED: re-enable when 2+ real LinkedIn recommendations are available in src/data/recommendations.ts
 "use client";
 
 import { motion } from "framer-motion";
@@ -87,7 +88,7 @@ export default function Testimonials() {
             >
               {/* Quote mark */}
               <span className="absolute top-6 right-8 text-[80px] leading-none font-bold text-white/[0.03] select-none">
-                "
+                &ldquo;
               </span>
 
               {/* Stars */}

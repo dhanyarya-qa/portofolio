@@ -2,51 +2,7 @@
 
 import { motion } from "framer-motion";
 import AnimatedCounter from "./AnimatedCounter";
-
-const metrics = [
-  {
-    value: 777,
-    suffix: "+",
-    label: "JIRA Tickets Managed",
-    description: "Bug tracking & issue management",
-    icon: "🎯",
-  },
-  {
-    value: 500,
-    suffix: "+",
-    label: "Bugs Identified",
-    description: "Critical defects caught before prod",
-    icon: "🐛",
-  },
-  {
-    value: 1000,
-    suffix: "+",
-    label: "Test Cases Written",
-    description: "Manual & automated test coverage",
-    icon: "📝",
-  },
-  {
-    value: 95,
-    suffix: "%",
-    label: "Test Pass Rate",
-    description: "Consistent quality delivery",
-    icon: "✅",
-  },
-  {
-    value: 40,
-    suffix: "%",
-    label: "Faster Release Cycles",
-    description: "Through automation implementation",
-    icon: "🚀",
-  },
-  {
-    value: 10,
-    suffix: "+",
-    label: "Tools & Frameworks",
-    description: "Cross-platform expertise",
-    icon: "🛠",
-  },
-];
+import { impactMetrics } from "@/data/metrics";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -97,7 +53,7 @@ export default function ImpactMetrics() {
           viewport={{ once: true, amount: 0.2 }}
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-[1px] bg-white/[0.04]"
         >
-          {metrics.map((metric) => (
+          {impactMetrics.map((metric) => (
             <motion.div
               key={metric.label}
               variants={itemVariants}

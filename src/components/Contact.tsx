@@ -3,6 +3,15 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { showToast } from "./ToastContainer";
+import { navigation } from "@/data/navigation";
+
+const nav = navigation.find((n) => n.id === "contact")!;
+
+// Derive keyboard shortcut hints from navigation data
+const keyboardHints = [
+  ...navigation.map((n, i) => `${i + 1}-${n.label}`),
+  "H-Top",
+];
 
 const contactLinks = [
   {
@@ -74,148 +83,68 @@ export default function Contact() {
     <section id="contact" className="relative w-full bg-black py-24 md:py-32">
       <div className="absolute inset-0 noise-overlay" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_rgba(255,192,0,0.04)_0%,transparent_60%)]" />
-
       <div className="relative z-10 px-6 md:px-16 lg:px-24 max-w-[1600px] mx-auto">
-        {/* Section Header */}
         <div className="mb-16">
           <div className="flex items-center gap-4 mb-4">
             <span className="w-12 h-px bg-lambo-gold" />
             <span className="text-[10px] uppercase tracking-[0.4em] text-lambo-gold font-light">
-              07 / Contact
+              {nav.sectionNumber} / {nav.label}
             </span>
           </div>
           <h2 className="text-[clamp(32px,5vw,64px)] font-bold uppercase leading-[0.92] text-white">
             GET IN <span className="gold-text">TOUCH</span>
           </h2>
           <p className="mt-4 text-sm text-white/40 font-light max-w-xl">
-            Interested in working together? Let&apos;s discuss how I can help ensure
-            your software quality.
+            Interested in working together? Let&apos;s discuss how I can help ensure your software quality.
           </p>
         </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-          {/* Left - Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
+          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
             <p className="text-lg text-white/60 font-light leading-relaxed mb-10">
-              I&apos;m always open to new opportunities, collaborations, and
-              interesting QA challenges. Whether you need automation frameworks
-              built from scratch or comprehensive testing strategies, feel free
-              to reach out.
+              I&apos;m always open to new opportunities, collaborations, and interesting QA challenges. Whether you need automation frameworks built from scratch or comprehensive testing strategies, feel free to reach out.
             </p>
-
             <div className="space-y-6">
               {contactLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target={link.label !== "Email" ? "_blank" : undefined}
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-4 p-4 border border-white/[0.04] hover:border-lambo-gold/20 hover:bg-lambo-gold/[0.02] transition-all duration-300"
-                >
-                  <span className="text-white/30 group-hover:text-lambo-gold transition-colors duration-300">
-                    {link.icon}
-                  </span>
+                <a key={link.label} href={link.href} target={link.label !== "Email" ? "_blank" : undefined} rel="noopener noreferrer" className="group flex items-center gap-4 p-4 border border-white/[0.04] hover:border-lambo-gold/20 hover:bg-lambo-gold/[0.02] transition-all duration-300">
+                  <span className="text-white/30 group-hover:text-lambo-gold transition-colors duration-300">{link.icon}</span>
                   <div>
-                    <p className="text-[10px] uppercase tracking-[0.25em] text-white/30 font-light mb-0.5">
-                      {link.label}
-                    </p>
-                    <p className="text-sm text-white/70 font-light group-hover:text-white transition-colors">
-                      {link.value}
-                    </p>
+                    <p className="text-[10px] uppercase tracking-[0.25em] text-white/30 font-light mb-0.5">{link.label}</p>
+                    <p className="text-sm text-white/70 font-light group-hover:text-white transition-colors">{link.value}</p>
                   </div>
-                  <svg
-                    className="w-4 h-4 ml-auto text-white/10 group-hover:text-lambo-gold group-hover:translate-x-1 transition-all duration-300"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
+                  <svg className="w-4 h-4 ml-auto text-white/10 group-hover:text-lambo-gold group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </a>
               ))}
             </div>
-
-            {/* Keyboard hint */}
             <div className="mt-8 p-4 border border-white/[0.04] bg-white/[0.01]">
-              <p className="text-[10px] uppercase tracking-[0.25em] text-white/20 font-light mb-2">
-                ⌨️ Keyboard Shortcuts
-              </p>
+              <p className="text-[10px] uppercase tracking-[0.25em] text-white/20 font-light mb-2">⌨️ Keyboard Shortcuts</p>
               <div className="flex flex-wrap gap-2">
-                {["1-About", "2-Skills", "3-Exp", "4-Projects", "5-Certs", "6-Contact", "H-Top"].map((k) => (
-                  <span key={k} className="px-2 py-1 text-[9px] uppercase tracking-wider border border-white/[0.06] text-white/25 font-light">
-                    {k}
-                  </span>
+                {keyboardHints.map((k) => (
+                  <span key={k} className="px-2 py-1 text-[9px] uppercase tracking-wider border border-white/[0.06] text-white/25 font-light">{k}</span>
                 ))}
               </div>
             </div>
           </motion.div>
-
-          {/* Right - Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
+          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }}>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.25em] text-white/30 font-light mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  required
-                  className="w-full bg-transparent border-b border-white/10 py-3 text-sm text-white font-light focus:outline-none focus:border-lambo-gold transition-colors placeholder:text-white/15"
-                  placeholder="Your name"
-                />
+                <label className="block text-[10px] uppercase tracking-[0.25em] text-white/30 font-light mb-2">Name</label>
+                <input type="text" name="name" required className="w-full bg-transparent border-b border-white/10 py-3 text-sm text-white font-light focus:outline-none focus:border-lambo-gold transition-colors placeholder:text-white/15" placeholder="Your name" />
               </div>
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.25em] text-white/30 font-light mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  className="w-full bg-transparent border-b border-white/10 py-3 text-sm text-white font-light focus:outline-none focus:border-lambo-gold transition-colors placeholder:text-white/15"
-                  placeholder="your@email.com"
-                />
+                <label className="block text-[10px] uppercase tracking-[0.25em] text-white/30 font-light mb-2">Email</label>
+                <input type="email" name="email" required className="w-full bg-transparent border-b border-white/10 py-3 text-sm text-white font-light focus:outline-none focus:border-lambo-gold transition-colors placeholder:text-white/15" placeholder="your@email.com" />
               </div>
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.25em] text-white/30 font-light mb-2">
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  name="subject"
-                  required
-                  className="w-full bg-transparent border-b border-white/10 py-3 text-sm text-white font-light focus:outline-none focus:border-lambo-gold transition-colors placeholder:text-white/15"
-                  placeholder="Project inquiry"
-                />
+                <label className="block text-[10px] uppercase tracking-[0.25em] text-white/30 font-light mb-2">Subject</label>
+                <input type="text" name="subject" required className="w-full bg-transparent border-b border-white/10 py-3 text-sm text-white font-light focus:outline-none focus:border-lambo-gold transition-colors placeholder:text-white/15" placeholder="Project inquiry" />
               </div>
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.25em] text-white/30 font-light mb-2">
-                  Message
-                </label>
-                <textarea
-                  name="message"
-                  required
-                  rows={4}
-                  className="w-full bg-transparent border-b border-white/10 py-3 text-sm text-white font-light focus:outline-none focus:border-lambo-gold transition-colors resize-none placeholder:text-white/15"
-                  placeholder="Tell me about your project..."
-                />
+                <label className="block text-[10px] uppercase tracking-[0.25em] text-white/30 font-light mb-2">Message</label>
+                <textarea name="message" required rows={4} className="w-full bg-transparent border-b border-white/10 py-3 text-sm text-white font-light focus:outline-none focus:border-lambo-gold transition-colors resize-none placeholder:text-white/15" placeholder="Tell me about your project..." />
               </div>
-              <button
-                type="submit"
-                disabled={formStatus !== "idle"}
-                className="group w-full py-4 bg-lambo-gold text-black text-xs uppercase tracking-[0.2em] font-semibold transition-all duration-300 hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
-              >
+              <button type="submit" disabled={formStatus !== "idle"} className="group w-full py-4 bg-lambo-gold text-black text-xs uppercase tracking-[0.2em] font-semibold transition-all duration-300 hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3">
                 {formStatus === "idle" && (
                   <>
                     Send Message
@@ -239,16 +168,13 @@ export default function Contact() {
                   </span>
                 )}
                 {formStatus === "error" && (
-                  <span className="flex items-center gap-2 text-red-600">
-                    ✕ Failed — Try Again
-                  </span>
+                  <span className="flex items-center gap-2 text-red-600">✕ Failed — Try Again</span>
                 )}
               </button>
             </form>
           </motion.div>
         </div>
       </div>
-
       <div className="absolute bottom-0 left-0 w-full section-line" />
     </section>
   );
