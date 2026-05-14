@@ -7,8 +7,8 @@ export const experiences: Experience[] = z.array(ExperienceSchema).parse([
     company: "YouApp",
     parent: "GBCI Ventures",
     role: "QA Engineer",
-    type: "Full-time",
-    period: "2024 — Present",
+    type: "Freelance",
+    period: "2025",
     description:
       "Leading quality assurance efforts for a cutting-edge social application platform, ensuring seamless user experiences across mobile and web platforms.",
     achievements: [
@@ -25,7 +25,7 @@ export const experiences: Experience[] = z.array(ExperienceSchema).parse([
     parent: "PT Kreasi Multi Travelindo",
     role: "QA Engineer",
     type: "Full-time",
-    period: "2023 — 2024",
+    period: "2025 — PRESENT",
     description:
       "Ensured the quality of an advanced travel technology platform through comprehensive automation and performance testing strategies.",
     achievements: [

@@ -14,7 +14,6 @@ import WhyHireMe from "@/components/WhyHireMe";
 import BugWarStories from "@/components/BugWarStories";
 import Projects from "@/components/Projects";
 import Certifications from "@/components/Certifications";
-import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -42,7 +41,6 @@ export default function Home() {
       <BugWarStories />
       <Projects />
       <Certifications />
-      <Contact />
       <Footer />
     </main>
   );
